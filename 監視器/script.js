@@ -1,19 +1,13 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const videoStream = document.getElementById('videoStream');
-    const refreshBtn = document.getElementById('refreshBtn');
-    
-    // Replace with your public IP and port
-    const baseUrl = 'http://192.168.1.109/stream';
-    
-    // Function to update the image source
-    function updateStream() {
-        const timestamp = new Date().getTime(); // To prevent caching
-        videoStream.src = `${baseUrl}?t=${timestamp}`;
-    }
-    
-    // Set the initial image source
-    updateStream();
-    
-    // Add event listener to the refresh button
-    refreshBtn.addEventListener('click', updateStream);
-});
+// JavaScript to refresh the image every 1 second
+const imgElement = document.getElementById('photo');
+
+function refreshImage() {
+    const timestamp = new Date().getTime();
+    imgElement.src = `http://192.168.1.109/jpg?${timestamp}`;
+}
+
+// Refresh the image every 1 second
+setInterval(refreshImage, 1000);
+
+// Initial load
+refreshImage();
